@@ -13,7 +13,7 @@ export default function Login() {
 
   async function loginUser(values) {
     try {
-      const response = await axios.post('http://localhost:4000/auth/login', {
+      const response = await axios.post(`/auth/login`, {
         email: values.email,
         password: values.password,
       })

@@ -23,7 +23,7 @@ export default function Users() {
   async function getUsers() {
     const token = localStorage.getItem('token')
     try {
-      const response = await axios.get('http://localhost:4000/auth/users', {
+      const response = await axios.get('/auth/users', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -41,14 +41,11 @@ export default function Users() {
 
     const requests = selectedUsers.map((selectedUser) => {
       try {
-        return axios.delete(
-          `http://localhost:4000/auth/users/${selectedUser._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+        return axios.delete(`/auth/users/${selectedUser._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         // добавить логику если список юзеров пуст
       } catch (err) {
         toast.error(err.response.data.message)
@@ -64,7 +61,7 @@ export default function Users() {
     // заблокированный юзер разлогинивается и не имеет доступ к регистрации
     const requests = selectedUsers.map((user) => {
       try {
-        return axios.put(`http://localhost:4000/auth/block/${user._id}`, null, {
+        return axios.put(`/auth/block/${user._id}`, null, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -83,15 +80,11 @@ export default function Users() {
 
     const requests = selectedUsers.map((user) => {
       try {
-        return axios.put(
-          `http://localhost:4000/auth/unblock/${user._id}`,
-          null,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+        return axios.put(`/auth/unblock/${user._id}`, null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
       } catch (err) {
         toast.error(err.response.data.message)
       }

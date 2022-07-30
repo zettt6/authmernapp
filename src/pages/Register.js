@@ -12,7 +12,7 @@ export default function Register() {
 
   async function registerUser(values) {
     try {
-      const response = await axios.post('http://localhost:4000/auth/register', {
+      const response = await axios.post('/auth/register', {
         username: values.username,
         email: values.email,
         password: values.password,
